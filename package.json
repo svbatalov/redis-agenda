@@ -1,0 +1,35 @@
+{
+  "name": "redis-agenda",
+  "version": "0.0.1",
+  "description": "Distribute agenda events via Redis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha",
+    "coverage": "node_modules/istanbul/lib/cli.js cover _mocha -- -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svbatalov/redis-agenda.git"
+  },
+  "keywords": [
+    "agenda",
+    "redis",
+    "event",
+    "IPC"
+  ],
+  "author": "Sergey Batalov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/svbatalov/redis-agenda/issues"
+  },
+  "homepage": "https://github.com/svbatalov/redis-agenda",
+  "dependencies": {
+    "agenda": "^0.6.26",
+    "redis": "^0.12.1"
+  },
+  "devDependencies": {
+    "istanbul": "^0.3.5",
+    "mocha": "^2.1.0",
+    "sinon": "^1.12.2"
+  }
+}
