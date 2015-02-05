@@ -44,12 +44,14 @@ describe('RedisAgenda', function () {
 
   it('should handle remote redis:complete:test event', function (done) {
     
+    var n;
     agenda.on('redis:complete:test3', function (job) {
+      n.kill('SIGINT');
       done();
     });
 
     var emitterPath = path.join( __dirname, 'fixtures', 'worker1.js')
-    var n = cp.fork( emitterPath, [ mongoCfg, 'test3' ] );
+    n = cp.fork( emitterPath, [ mongoCfg, 'test3' ] );
   });
 
   it('should handle few remote redis:complete:test events', function (done) {
@@ -57,8 +59,8 @@ describe('RedisAgenda', function () {
     var n1, n2, counter = 0;
     agenda.on('redis:complete:test4', function (job) {
       if (++counter == 2) {
-        n1.send('exit');
-        n2.send('exit');
+        n1.kill('SIGINT');
+        n2.kill('SIGINT');
         done();
       }
     });
@@ -69,14 +71,15 @@ describe('RedisAgenda', function () {
   });
 
   it('should receive custom remote event', function (done) {
-  
+    var n;
     agenda.on('redis:custom event', function (data) {
+      n.kill('SIGINT');
       if (data && data.test == 'payload') done();
       else done(new Error('wrong payload'));
     });
 
     var emitterPath = path.join( __dirname, 'fixtures', 'worker2.js')
-    var n = cp.fork( emitterPath, [ mongoCfg, 'test5' ] );
+    n = cp.fork( emitterPath, [ mongoCfg, 'test5' ] );
   });
 
   it('should ignore non-agenda redis messages', function (done) {

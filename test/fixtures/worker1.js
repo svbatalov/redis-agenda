@@ -9,9 +9,4 @@ agenda.define(name, function (job) {});
 
 agenda.schedule('now', name);
 
-// Ensure we can shut down the process from tests
-process.on('message', function(msg) {
-  if( msg == 'exit' ) process.exit(0);
-});
-
 agenda.start();
