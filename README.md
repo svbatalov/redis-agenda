@@ -22,7 +22,7 @@ agenda.emit('custom event', {some: 'data'});
 and listen to it (with prefix `redis:`) in the same
 or in another instance(s):
 ```javascript
-agenda.emit('redis:custom event', function (data) {
+agenda.on('redis:custom event', function (data) {
 	console.log(data); // => {some: 'data'}
 });
 ```
