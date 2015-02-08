@@ -9,7 +9,7 @@ var agenda = new Agenda({...});
 agenda.on('redis:complete', function (job) {
 	// job actually equals to originalJob.attrs
 
-	// This function gets called event when
+	// This function gets called even when
 	// original 'complete' event occured on
 	// different worker.
 });
